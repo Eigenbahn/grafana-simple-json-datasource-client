@@ -101,4 +101,13 @@ NB: Most datasource implementations will match any indicator containing `:target
 (let [from (t/- (t/now) (t/new-duration 10 :hours))
       to   (t/now)]
   (query {:url "http://localhost:8088/centreon-grafana-simple-json-datasource/grafana"} ["<unique_id_n>"] from to))
+;; -> '({
+;;       ;; context for 1rst series
+;;       {:unit "percent", :label "cows-with-horns"}
+;;       ;; values for 1rst series
+;;       {#inst "2020-09-14T12:47:02.000000000-00:00" 0.00457012,
+;;        #inst "2020-09-14T12:17:10.000000000-00:00" 0.00456644,
+;;        ...
+;;        #inst "2020-09-14T14:13:36.000000000-00:00" 0.004636848}
+;;       })
 ```
