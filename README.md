@@ -98,9 +98,11 @@ NB: Most datasource implementations will match any indicator containing `:target
 #### Query indicators values
 
 ```clojure
+(require '[tick.alpha.api :as t])
+
 (let [from (t/- (t/now) (t/new-duration 10 :hours))
       to   (t/now)]
-  (query {:url "http://localhost:8088/centreon-grafana-simple-json-datasource/grafana"} ["<unique_id_n>"] from to))
+  (query {:url "http://localhost"} ["<unique_id_n>"] from to))
 ;; -> '({
 ;;       ;; context for 1rst series
 ;;       {:unit "percent", :label "cows-with-horns"}
