@@ -64,7 +64,7 @@ Likewise, we by default convert time series into more clojure-friendly data stru
 #### Ensure the datasource is alive
 
 ```clojure
-(ping {:url "http://localhost"})
+(grafana-simple-json-datasource.client/ping {:url "http://localhost"})
 ;; -> nil
 ```
 
@@ -78,7 +78,7 @@ Some will perform numerous healthchecks, others will blindly respond `200 OK`.
 #### List all available indicators / metrics
 
 ```clojure
-(search {:url "http://localhost"})
+(grafana-simple-json-datasource.client/search {:url "http://localhost"})
 ;; -> {"<unique_id_1>" "nb-of-babies"
 ;;     ;; [...]
 ;;     "<unique_id_n>" "pct-of-cows"}
@@ -87,7 +87,7 @@ Some will perform numerous healthchecks, others will blindly respond `200 OK`.
 #### List indicators matching word
 
 ```clojure
-(search {:url "http://localhost"} :target "cow")
+(grafana-simple-json-datasource.client/search {:url "http://localhost"} :target "cow")
 ;; -> {"<unique_id_m>" "nb-of-cow-species"
 ;;     "<unique_id_n>" "pct-of-cows"}
 ```
@@ -102,7 +102,7 @@ NB: Most datasource implementations will match any indicator containing `:target
 
 (let [from (t/- (t/now) (t/new-duration 10 :hours))
       to   (t/now)]
-  (query {:url "http://localhost"} ["<unique_id_n>"] from to))
+  (grafana-simple-json-datasource.client/query {:url "http://localhost"} ["<unique_id_n>"] from to))
 ;; -> '({
 ;;       ;; context for 1rst series
 ;;       {:unit "percent", :label "cows-with-horns"}
